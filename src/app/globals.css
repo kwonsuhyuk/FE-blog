@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* Brand Colors */
+  --color-primary: #B8D0EB;
+  --color-secondary: #B9FAF8;
+  --color-accent: #3b82f6;
+
+  /* Semantic Text Colors - Strengthened for Readability */
+  --color-text-main: #1e293b;    /* slate-900 */
+  --color-text-muted: #475569;   /* slate-600 */
+  --color-text-dim: #64748b;     /* slate-500 */
+  --color-text-light: #94a3b8;   /* slate-400 */
+  
+  /* Border & UI */
+  --color-border-subtle: #f1f5f9; /* slate-100 */
+  --color-border-main: #e2e8f0;   /* slate-200 */
+}
+
+:root {
+  --primary: #B8D0EB;
+  --secondary: #B9FAF8;
+}
+
+body {
+  @apply antialiased text-text-main bg-slate-50;
+}
