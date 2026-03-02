@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { TocItem } from "@/src/lib/posts";
 
 interface TOCProps {
@@ -8,28 +7,6 @@ interface TOCProps {
 }
 
 export function TOC({ items }: TOCProps) {
-  const [activeId, setActiveId] = useState<string>("");
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-80px 0px -80% 0px" }
-    );
-
-    items.forEach((item) => {
-      const element = document.getElementById(item.id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, [items]);
-
   if (items.length === 0) return null;
 
   return (
@@ -44,11 +21,7 @@ export function TOC({ items }: TOCProps) {
             >
               <a
                 href={`#${item.id}`}
-                className={`block transition-colors duration-200 ${
-                  activeId === item.id 
-                    ? "text-primary font-bold" 
-                    : "text-text-light hover:text-text-muted"
-                }`}
+                className="block text-text-light hover:text-text-muted transition-colors duration-200"
               >
                 {item.text}
               </a>
