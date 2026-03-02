@@ -5,6 +5,8 @@ import "./globals.css";
 import NavLinks from "./NavLinks";
 import { ThemeProvider } from "@/src/components/ThemeProvider";
 import { ThemeToggle } from "@/src/components/ThemeToggle";
+import { PageTransition } from "@/src/components/PageTransition";
+import { ScrollToTop } from "@/src/components/ScrollToTop";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -81,7 +83,11 @@ export default function RootLayout({
             <div className="absolute bottom-[20%] left-[-5%] w-[25%] h-[25%] bg-secondary/10 blur-[100px] rounded-full dark:hidden" />
           </div>
 
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
+
+          <ScrollToTop />
 
           <footer className="py-12 bg-bg-subtle/50 backdrop-blur-sm">
             <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">

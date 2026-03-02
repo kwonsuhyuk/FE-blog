@@ -4,7 +4,9 @@ import Link from "next/link";
 import { PostMetadata } from "@/src/lib/posts";
 import { Hero } from "@/src/components/Hero";
 import { PostCard } from "@/src/components/PostCard";
+import { PostCardSkeleton } from "@/src/components/Skeleton";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 interface HomeClientProps {
   allPostsData: PostMetadata[];
@@ -17,6 +19,12 @@ const SOCIAL_LINKS = [
 ];
 
 export default function HomeClient({ allPostsData }: HomeClientProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <main className="w-full">
       <Hero 
@@ -60,18 +68,24 @@ export default function HomeClient({ allPostsData }: HomeClientProps) {
 
           {/* Right: Post List */}
           <div className="lg:col-span-8">
-            <div className="space-y-4">
-              {allPostsData.slice(0, 5).map((post, index) => (
-                <motion.div
-                  key={post.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <PostCard post={post} headingLevel="h3" />
-                </motion.div>
-              ))}
+            <div className="grid gap-8">
+              {!mounted ? (
+                Array.from({ length: 3 }).map((_, i) => (
+                  <PostCardSkeleton key={i} />
+                ))
+              ) : (
+                allPostsData.slice(0, 5).map((post, index) => (
+                  <motion.div
+                    key={post.slug}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <PostCard post={post} headingLevel="h3" />
+                  </motion.div>
+                ))
+              )}
             </div>
           </div>
         </div>

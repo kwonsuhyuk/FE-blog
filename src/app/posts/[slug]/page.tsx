@@ -3,6 +3,7 @@ import { getPostData, getSortedPostsData } from "@/src/lib/posts";
 import { notFound } from "next/navigation";
 import { TOC } from "@/src/components/TOC";
 import { Metadata } from "next";
+import { CodeBlockManager } from "@/src/components/CodeBlockManager";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -45,6 +46,7 @@ export default async function Post(props: Props) {
 
     return (
       <div className="max-w-6xl mx-auto relative px-6">
+        <CodeBlockManager />
         <article className="max-w-3xl mx-auto py-24 text-text-main">
           <header className="mb-16 pb-12">
             <h1 className="text-3xl md:text-5xl font-black tracking-tighter text-text-main mb-6 leading-[1.1]">

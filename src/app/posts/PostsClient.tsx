@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { PostMetadata } from "@/src/lib/posts";
 import { PostCard } from "@/src/components/PostCard";
+import { PostCardSkeleton } from "@/src/components/Skeleton";
 
 interface PostsClientProps {
   allPosts: PostMetadata[];
@@ -12,6 +13,11 @@ interface PostsClientProps {
 export default function PostsClient({ allPosts, categories }: PostsClientProps) {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const filteredPosts = useMemo(() => {
     return allPosts.filter((post) => {
@@ -81,10 +87,16 @@ export default function PostsClient({ allPosts, categories }: PostsClientProps) 
 
       {/* Post List */}
       <div className="grid gap-8">
-        {filteredPosts.map((post) => (
-          <PostCard key={post.slug} post={post} headingLevel="h2" />
-        ))}
-        {filteredPosts.length === 0 && (
+        {!mounted ? (
+          Array.from({ length: 5 }).map((_, i) => (
+            <PostCardSkeleton key={i} />
+          ))
+        ) : (
+          filteredPosts.map((post) => (
+            <PostCard key={post.slug} post={post} headingLevel="h2" />
+          ))
+        )}
+        {mounted && filteredPosts.length === 0 && (
           <p className="text-text-light font-medium py-20 text-center text-xl">
             해당 조건에 맞는 포스트가 없습니다.
           </p>
