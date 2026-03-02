@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import NavLinks from "./NavLinks";
@@ -7,13 +6,6 @@ import { ThemeProvider } from "@/src/components/ThemeProvider";
 import { ThemeToggle } from "@/src/components/ThemeToggle";
 import { PageTransition } from "@/src/components/PageTransition";
 import { ScrollToTop } from "@/src/components/ScrollToTop";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-montserrat",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -42,15 +34,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" suppressHydrationWarning className={montserrat.variable}>
+    <html lang="ko" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/짱구.jpg" />
-        {/* Pretendard for Korean support */}
+        {/* Gmarket Sans & Pretendard support */}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSans.css" />
         <link rel="stylesheet" as="style" crossOrigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
         
         <style dangerouslySetInnerHTML={{ __html: `
           *:not(i, .material-symbols-outlined, .material-icons) {
-            font-family: var(--font-montserrat), "Pretendard Variable", Pretendard, sans-serif !important;
+            font-family: "GmarketSans", "Pretendard Variable", Pretendard, sans-serif !important;
           }
         ` }} />
       </head>
