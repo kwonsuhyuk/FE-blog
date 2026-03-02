@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import Link from "next/link";
 import "./globals.css";
 import NavLinks from "./NavLinks";
@@ -6,6 +7,27 @@ import { ThemeProvider } from "@/src/components/ThemeProvider";
 import { ThemeToggle } from "@/src/components/ThemeToggle";
 import { PageTransition } from "@/src/components/PageTransition";
 import { ScrollToTop } from "@/src/components/ScrollToTop";
+
+const gmarketSans = localFont({
+  src: [
+    {
+      path: "../../public/fonts/GmarketSansLight.woff",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GmarketSansMedium.woff",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GmarketSansBold.woff",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-gmarket",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -34,16 +56,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" suppressHydrationWarning>
+    <html lang="ko" suppressHydrationWarning className={gmarketSans.variable}>
       <head>
         <link rel="icon" href="/짱구.jpg" />
-        {/* Gmarket Sans & Pretendard support */}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSans.css" />
+        {/* Pretendard for Korean support */}
         <link rel="stylesheet" as="style" crossOrigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
         
+        {/* Force font application to override aggressive browser extensions */}
         <style dangerouslySetInnerHTML={{ __html: `
           *:not(i, .material-symbols-outlined, .material-icons) {
-            font-family: "GmarketSans", "Pretendard Variable", Pretendard, sans-serif !important;
+            font-family: var(--font-gmarket), "Pretendard Variable", Pretendard, sans-serif !important;
           }
         ` }} />
       </head>

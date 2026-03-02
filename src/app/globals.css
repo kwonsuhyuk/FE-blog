@@ -19,7 +19,7 @@
   --color-bg-main: #ffffff;
   --color-bg-subtle: #fafafa;
 
-  --font-sans: "GmarketSans", "Pretendard Variable", Pretendard, sans-serif;
+  --font-sans: var(--font-gmarket), "Pretendard Variable", Pretendard, sans-serif;
 }
 
 /* Dark Mode Overrides - Neutral Grays */
@@ -55,9 +55,9 @@ body {
   @apply antialiased text-text-main bg-bg-main transition-colors duration-300;
 }
 
-/* Base override for all elements */
+/* Force font application to override aggressive browser extensions */
 *:not(i, .material-symbols-outlined, .material-icons) {
-  font-family: "GmarketSans", "Pretendard Variable", Pretendard, sans-serif !important;
+  font-family: var(--font-gmarket), "Pretendard Variable", Pretendard, sans-serif !important;
 }
 
 /* Typography Dark Mode Support */
