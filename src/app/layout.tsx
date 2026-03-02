@@ -55,11 +55,9 @@ export default function RootLayout({
           <div className="absolute bottom-[20%] left-[-5%] w-[25%] h-[25%] bg-secondary/10 blur-[100px] rounded-full" />
         </div>
 
-        <div className="min-h-[calc(100vh-64px)]">
-          {children}
-        </div>
+        {children}
 
-        <footer className="py-16 bg-slate-50/50 backdrop-blur-sm">
+        <footer className="py-12 bg-slate-50/50 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-[10px] text-text-light font-black uppercase tracking-[0.2em]">
               @ powered by suhyuk

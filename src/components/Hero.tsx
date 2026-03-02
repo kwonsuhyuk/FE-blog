@@ -21,31 +21,24 @@ export function Hero({ line1, line3, socialLinks }: HeroProps) {
       const currentFullText = keywords[wordIndex];
       
       if (!isDeleting) {
-        // Typing
         setDisplayText(currentFullText.substring(0, displayText.length + 1));
         setTypingSpeed(200);
-
         if (displayText === currentFullText) {
-          // Pause at the end
           setTimeout(() => setIsDeleting(true), 3000);
         }
       } else {
-        // Deleting
         setDisplayText(currentFullText.substring(0, displayText.length - 1));
         setTypingSpeed(150);
-
         if (displayText === "") {
           setIsDeleting(false);
           setWordIndex((prev) => (prev + 1) % keywords.length);
         }
       }
     };
-
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, wordIndex, typingSpeed, keywords]);
 
-  // 받침 유무에 따라 '을/를'을 결정하는 함수
   const getPostposition = (word: string) => {
     if (!word) return '';
     const lastChar = word.charCodeAt(word.length - 1);
@@ -56,27 +49,11 @@ export function Hero({ line1, line3, socialLinks }: HeroProps) {
   };
 
   return (
-    <section className="py-32 md:py-40 relative overflow-hidden bg-white">
-      {/* Decorative Blobs */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 overflow-hidden pointer-events-none">
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 0],
-            opacity: [0.3, 0.5, 0.3]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[-10%] left-[-5%] w-[50%] h-[50%] bg-primary/20 blur-[120px] rounded-full"
-        />
-        <motion.div 
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            rotate: [0, -90, 0],
-            opacity: [0.2, 0.4, 0.2]
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-secondary/30 blur-[120px] rounded-full"
-        />
+    <section className="py-32 md:py-48 relative overflow-hidden bg-white">
+      {/* Subtle background blur for depth */}
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-5%] w-[50%] h-[50%] bg-primary/10 blur-[120px] rounded-full opacity-50" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-secondary/20 blur-[120px] rounded-full opacity-50" />
       </div>
 
       <div className="max-w-6xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 items-center gap-12 text-left relative">

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { PostMetadata } from "@/src/lib/posts";
 import { Hero } from "@/src/components/Hero";
 import { PostCard } from "@/src/components/PostCard";
+import { motion } from "framer-motion";
 
 interface HomeClientProps {
   allPostsData: PostMetadata[];
@@ -25,20 +26,54 @@ export default function HomeClient({ allPostsData }: HomeClientProps) {
       />
 
       {/* Content Section */}
-      <div className="max-w-6xl mx-auto px-6 py-20">
-        <header className="mb-12 flex items-center justify-between pb-6">
-          <div className="space-y-1">
-            <h2 className="text-xs font-black tracking-[0.3em] uppercase text-text-light">Recently Published</h2>
-          </div>
-          <Link href="/posts" className="text-xs font-black tracking-[0.1em] text-text-light hover:text-primary transition-colors uppercase">
-            전체 포스트 보기 →
-          </Link>
-        </header>
+      <div className="max-w-6xl mx-auto px-6 pt-20 pb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          {/* Left: Section Header */}
+          <div className="lg:col-span-4">
+            <div className="sticky top-32 space-y-6">
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="flex flex-col gap-2"
+              >
+                <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-text-main">
+                  Recent <br /> Posts
+                </h2>
+              </motion.div>
+              
+              <p className="text-text-muted text-sm leading-relaxed max-w-[240px] font-medium">
+                생각과 배움을 기록합니다.
+              </p>
 
-        <div className="grid gap-8">
-          {allPostsData.slice(0, 5).map((post) => (
-            <PostCard key={post.slug} post={post} headingLevel="h3" />
-          ))}
+              <div className="pt-2">
+                <Link href="/posts" className="group inline-flex items-center gap-3 text-xs font-black uppercase tracking-widest text-text-main">
+                  <span>All Posts</span>
+                  <motion.span 
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
+                  >→</motion.span>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Post List */}
+          <div className="lg:col-span-8">
+            <div className="space-y-4">
+              {allPostsData.slice(0, 5).map((post, index) => (
+                <motion.div
+                  key={post.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <PostCard post={post} headingLevel="h3" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </main>
