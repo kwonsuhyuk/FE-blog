@@ -21,8 +21,10 @@ category: "Dev"
 ### 필수 입력 항목:
 - **title**: 포스트의 제목
 - **date**: 작성일 (YYYY-MM-DD 형식)
-- **description**: 포스트 목록에 노출될 설명 (1~2줄 권장)
 - **category**: `Dev`, `Experience`, `회고` 중 하나 (새로운 카테고리 입력 시 자동으로 추가됨)
+
+### 선택 입력 항목:
+- **description**: 포스트 목록에 노출될 설명 (입력하지 않으면 본문 내용 중 첫 2~3줄이 자동으로 추출되어 표시됩니다.)
 
 3. Frontmatter 아래에 마크다운 문법으로 내용을 작성합니다.
 4. GitHub `main` 브랜치에 `push`하면 GitHub Actions를 통해 자동으로 배포됩니다.
