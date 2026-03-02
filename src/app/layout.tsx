@@ -48,6 +48,10 @@ export const metadata: Metadata = {
     title: "suhyukLog | FE Developer",
     description: "프론트엔드 개발자 권수혁의 기술 블로그입니다. 배움과 경험을 기록합니다.",
   },
+  icons: {
+    icon: "/짱구.jpg",
+    apple: "/짱구.jpg",
+  },
 };
 
 export default function RootLayout({
