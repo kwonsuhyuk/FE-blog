@@ -99,9 +99,9 @@ export default function RootLayout({
                     className="object-cover group-hover:rotate-12 transition-transform" 
                   />
                 </div>
-                suhyukLog
+                <span className="hidden md:block text-xl font-black tracking-tighter">suhyukLog</span>
               </Link>
-              <div className="flex items-center gap-8">
+              <div className="flex items-center gap-4 md:gap-8">
                 <NavLinks />
                 <ThemeToggle />
               </div>
