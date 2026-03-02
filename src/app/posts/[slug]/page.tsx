@@ -25,18 +25,14 @@ export default async function Post(props: Props) {
       <div className="max-w-6xl mx-auto relative px-6">
         <article className="max-w-3xl mx-auto py-24 text-text-main">
           <header className="mb-16 pb-12">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3 text-xs font-black text-text-light uppercase tracking-[0.2em]">
-                <span>{postData.date}</span>
-              </div>
-              <span className="text-xs font-black text-primary uppercase tracking-[0.2em]">
-                {postData.category}
-              </span>
-            </div>
-            
-            <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-8 leading-[1.2]">
+            <h1 className="text-3xl md:text-5xl font-black tracking-tighter text-text-main mb-6 leading-[1.1]">
               {postData.title}
             </h1>
+            <div className="flex items-center gap-3 text-sm md:text-base text-text-light font-medium tracking-tight">
+              <time>{postData.date}</time>
+              <span className="text-border-main">|</span>
+              <span className="text-primary font-bold">{postData.category}</span>
+            </div>
           </header>
 
           <div
