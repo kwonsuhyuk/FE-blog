@@ -35,7 +35,7 @@ export default function HomeClient({ allPostsData }: HomeClientProps) {
           </Link>
         </header>
 
-        <div className="grid gap-12">
+        <div className="grid gap-8">
           {allPostsData.slice(0, 5).map((post) => (
             <PostCard key={post.slug} post={post} headingLevel="h3" />
           ))}

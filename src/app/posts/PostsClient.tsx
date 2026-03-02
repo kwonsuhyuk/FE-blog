@@ -80,7 +80,7 @@ export default function PostsClient({ allPosts, categories }: PostsClientProps) 
       </div>
 
       {/* Post List */}
-      <div className="grid gap-12">
+      <div className="grid gap-8">
         {filteredPosts.map((post) => (
           <PostCard key={post.slug} post={post} headingLevel="h2" />
         ))}
