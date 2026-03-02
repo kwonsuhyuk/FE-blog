@@ -19,7 +19,10 @@ export interface PostData extends PostMetadata {
 }
 
 export async function getSortedPostsData(): Promise<PostMetadata[]> {
-  const fileNames = fs.readdirSync(postsDirectory);
+  if (!fs.existsSync(postsDirectory)) {
+    return [];
+  }
+  const fileNames = fs.readdirSync(postsDirectory).filter(fileName => fileName.endsWith('.md'));
   const allPostsData = await Promise.all(
     fileNames.map(async (fileName) => {
       const slug = fileName.replace(/\.md$/, '');
