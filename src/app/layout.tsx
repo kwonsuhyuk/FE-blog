@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Link from "next/link";
+import Image from "next/image";
 import "./globals.css";
 import NavLinks from "./NavLinks";
 import { ThemeProvider } from "@/src/components/ThemeProvider";
@@ -49,8 +50,8 @@ export const metadata: Metadata = {
     description: "프론트엔드 개발자 권수혁의 기술 블로그입니다. 배움과 경험을 기록합니다.",
   },
   icons: {
-    icon: "/짱구.jpg",
-    apple: "/짱구.jpg",
+    icon: "/FE-blog/logo.jpg",
+    apple: "/FE-blog/logo.jpg",
   },
 };
 
@@ -62,11 +63,10 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning className={gmarketSans.variable}>
       <head>
-        <link rel="icon" href="/짱구.jpg" />
+        <link rel="icon" href="/FE-blog/logo.jpg" />
         {/* Pretendard for Korean support */}
         <link rel="stylesheet" as="style" crossOrigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
         
-        {/* Force font application to override aggressive browser extensions */}
         <style dangerouslySetInnerHTML={{ __html: `
           *:not(i, .material-symbols-outlined, .material-icons) {
             font-family: var(--font-gmarket), "Pretendard Variable", Pretendard, sans-serif !important;
@@ -86,7 +86,14 @@ export default function RootLayout({
           <nav className="sticky top-0 z-50 bg-bg-main/80 backdrop-blur-md">
             <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
               <Link href="/" className="text-xl font-black tracking-tighter flex items-center gap-2 group">
-                <img src="/짱구.jpg" alt="Logo" className="w-8 h-8 rounded-lg object-cover group-hover:rotate-12 transition-transform shadow-sm" />
+                <div className="relative w-8 h-8 overflow-hidden rounded-lg shadow-sm">
+                  <Image 
+                    src="/logo.jpg" 
+                    alt="Logo" 
+                    fill
+                    className="object-cover group-hover:rotate-12 transition-transform" 
+                  />
+                </div>
                 suhyukLog
               </Link>
               <div className="flex items-center gap-8">
