@@ -1,67 +1,146 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 interface HeroProps {
   line1: string;
-  line2: string;
   line3: string;
   socialLinks: { label: string; href: string }[];
 }
 
-export function Hero({ line1, line2, line3, socialLinks }: HeroProps) {
+export function Hero({ line1, line3, socialLinks }: HeroProps) {
+  const keywords = ["코드", "사용자 경험", "기록", "개발 경험"];
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(200);
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const currentFullText = keywords[wordIndex];
+      
+      if (!isDeleting) {
+        // Typing
+        setDisplayText(currentFullText.substring(0, displayText.length + 1));
+        setTypingSpeed(200);
+
+        if (displayText === currentFullText) {
+          // Pause at the end
+          setTimeout(() => setIsDeleting(true), 3000);
+        }
+      } else {
+        // Deleting
+        setDisplayText(currentFullText.substring(0, displayText.length - 1));
+        setTypingSpeed(150);
+
+        if (displayText === "") {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % keywords.length);
+        }
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, wordIndex, typingSpeed, keywords]);
+
+  // 받침 유무에 따라 '을/를'을 결정하는 함수
+  const getPostposition = (word: string) => {
+    if (!word) return '';
+    const lastChar = word.charCodeAt(word.length - 1);
+    const isHangul = lastChar >= 0xac00 && lastChar <= 0xd7a3;
+    if (!isHangul) return '를';
+    const hasBatchim = (lastChar - 0xac00) % 28 > 0;
+    return hasBatchim ? '을' : '를';
+  };
+
   return (
-    <section className="py-24 relative overflow-hidden border-b border-border-subtle bg-white/40 backdrop-blur-xl">
-      <div className="max-w-6xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 items-center gap-12 text-left">
-        <div className="lg:col-span-8 z-10">
-          <div className="flex flex-col">
-            <h1 className="text-3xl md:text-5xl font-extralight tracking-tight mb-3 leading-tight text-text-main">
-              {line1.split("").map((char, index) => (
-                <motion.span key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.08, duration: 0.4 }}>
-                  {char}
-                </motion.span>
-              ))}
+    <section className="py-32 md:py-40 relative overflow-hidden bg-white">
+      {/* Decorative Blobs */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 overflow-hidden pointer-events-none">
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            rotate: [0, 90, 0],
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[-10%] left-[-5%] w-[50%] h-[50%] bg-primary/20 blur-[120px] rounded-full"
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            rotate: [0, -90, 0],
+            opacity: [0.2, 0.4, 0.2]
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-secondary/30 blur-[120px] rounded-full"
+        />
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 items-center gap-12 text-left relative">
+        <div className="lg:col-span-10 z-10">
+          <div className="flex flex-col gap-3">
+            <h1 className="text-xl md:text-4xl font-extralight tracking-tighter text-text-main leading-[1.1]">
+              {line1}
             </h1>
-            <h2 className="text-3xl md:text-5xl tracking-tight mb-3 leading-tight text-text-main">
-              {line2.split("").map((char, index) => {
-                const isReactChar = index >= 0 && index < 5; 
-                return (
-                  <motion.span key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: (line1.length + index) * 0.08, duration: 0.4 }} className={isReactChar ? "font-black text-primary" : ""}>
-                    {char}
-                  </motion.span>
-                );
-              })}
-            </h2>
-            <h2 className="text-3xl md:text-5xl font-extralight tracking-tight leading-tight text-text-main">
-              {line3.split("").map((char, index) => {
-                const isEmphasized = index >= 4; 
-                return (
-                  <motion.span key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: (line1.length + line2.length + index) * 0.08, duration: 0.4 }} className={isEmphasized ? "font-bold text-text-light" : ""}>
-                    {char}
-                  </motion.span>
-                );
-              })}
+            
+            <div className="text-xl md:text-4xl font-black tracking-tighter text-text-main leading-[1.1] flex flex-wrap items-baseline gap-x-[0.2em]">
+              <span className="whitespace-nowrap">더 나은</span>
+              <div className="inline-flex items-baseline min-w-[1em]">
+                <span className="text-primary">{displayText}</span>
+                <span className="text-text-main ml-1">{getPostposition(displayText)}</span>
+                <motion.span
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+                  className="inline-block w-[2px] h-[0.8em] bg-primary ml-1 translate-y-[0.1em]"
+                />
+              </div>
+              <span className="whitespace-nowrap text-text-main">위해 노력하는</span>
+            </div>
+            
+            <h2 className="text-xl md:text-4xl font-extralight tracking-tighter text-text-muted/60 leading-[1.1]">
+              {line3}
             </h2>
           </div>
-          <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: (line1.length + line2.length + line3.length) * 0.08, duration: 0.8 }} className="mt-10 h-1 w-12 bg-primary/60 rounded-full origin-left"></motion.div>
+
+          <motion.div 
+            initial={{ scaleX: 0 }} 
+            animate={{ scaleX: 1 }} 
+            transition={{ delay: 1.2, duration: 1 }} 
+            className="mt-12 h-[2px] w-20 bg-primary origin-left"
+          />
         </div>
-        <div className="lg:col-span-4 flex flex-col items-end gap-5 z-10">
+
+        <div className="lg:col-span-2 flex flex-col items-start lg:items-end gap-5 z-10 mt-12 lg:mt-0">
           {socialLinks.map((link, i) => (
             <motion.a 
               key={link.label} 
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, x: 10 }} 
+              initial={{ opacity: 0, x: 20 }} 
               animate={{ opacity: 1, x: 0 }} 
-              transition={{ delay: 1.5 + (i * 0.1) }} 
-              className="text-lg md:text-xl font-extralight text-text-light hover:text-primary transition-all tracking-tight"
+              transition={{ delay: 1.5 + (i * 0.1), duration: 0.6 }} 
+              className="text-sm md:text-base font-black uppercase tracking-[0.2em] text-text-light hover:text-primary transition-all relative group whitespace-nowrap"
             >
               {link.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all group-hover:w-full" />
             </motion.a>
           ))}
         </div>
       </div>
+      
+      {/* Scroll Indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.0, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block"
+      >
+        <div className="w-[1px] h-16 bg-gradient-to-b from-primary to-transparent" />
+      </motion.div>
     </section>
   );
 }

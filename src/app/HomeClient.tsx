@@ -20,8 +20,7 @@ export default function HomeClient({ allPostsData }: HomeClientProps) {
     <main className="w-full">
       <Hero 
         line1="안녕하세요!"
-        line2="React 를 좋아하는"
-        line3="개발자 입니다."
+        line3="프론트엔드 개발자 권수혁입니다."
         socialLinks={SOCIAL_LINKS}
       />
 
