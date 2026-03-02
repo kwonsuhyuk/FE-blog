@@ -14,8 +14,24 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "suhyukLog | FE Developer",
-  description: "Personal dev blog of suhyuk",
+  title: {
+    default: "suhyukLog | FE Developer",
+    template: "suhyukLog | %s",
+  },
+  description: "프론트엔드 개발자 권수혁의 기술 블로그입니다. 배움과 경험을 기록합니다.",
+  openGraph: {
+    title: "suhyukLog | FE Developer",
+    description: "프론트엔드 개발자 권수혁의 기술 블로그입니다. 배움과 경험을 기록합니다.",
+    url: "https://kwonsuhyuk.github.io/FE-blog/",
+    siteName: "suhyukLog",
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "suhyukLog | FE Developer",
+    description: "프론트엔드 개발자 권수혁의 기술 블로그입니다. 배움과 경험을 기록합니다.",
+  },
 };
 
 export default function RootLayout({

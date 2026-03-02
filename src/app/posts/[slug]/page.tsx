@@ -2,12 +2,34 @@ import Link from "next/link";
 import { getPostData, getSortedPostsData } from "@/src/lib/posts";
 import { notFound } from "next/navigation";
 import { TOC } from "@/src/components/TOC";
+import { Metadata } from "next";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export const dynamicParams = false;
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
+  try {
+    const postData = await getPostData(params.slug);
+    return {
+      title: postData.title,
+      description: postData.description,
+      openGraph: {
+        title: postData.title,
+        description: postData.description,
+        type: "article",
+        publishedTime: postData.date,
+      },
+    };
+  } catch {
+    return {
+      title: "Post Not Found",
+    };
+  }
+}
 
 export async function generateStaticParams() {
   const posts = await getSortedPostsData();
