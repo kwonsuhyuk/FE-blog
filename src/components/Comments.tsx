@@ -8,7 +8,7 @@ export function Comments() {
   const commentsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const theme = resolvedTheme === "dark" ? "dark" : "light";
+    const theme = resolvedTheme === "dark" ? "dark_dimmed" : "light";
     
     // 이미 로드된 giscus가 있다면 테마만 변경
     const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
