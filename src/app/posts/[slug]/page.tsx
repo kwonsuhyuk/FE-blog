@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { TOC } from "@/src/components/TOC";
 import { Metadata } from "next";
 import { CodeBlockManager } from "@/src/components/CodeBlockManager";
+import { Comments } from "@/src/components/Comments";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -78,7 +79,7 @@ export default async function Post(props: Props) {
               >
                 <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-text-light transition-colors group-hover:text-primary">
                   <span className="mr-2 transform group-hover:-translate-x-1 transition-transform">←</span>
-                  Previous Post
+                  Older Post
                 </div>
                 <span className="text-base font-bold text-text-main line-clamp-1">
                   {postData.prevPost.title}
@@ -92,7 +93,7 @@ export default async function Post(props: Props) {
                 className="group p-6 rounded-2xl border border-border-subtle hover:bg-bg-subtle transition-all text-right flex flex-col items-end gap-2"
               >
                 <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-text-light transition-colors group-hover:text-primary">
-                  Next Post
+                  Newer Post
                   <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
                 </div>
                 <span className="text-base font-bold text-text-main line-clamp-1">
@@ -101,6 +102,9 @@ export default async function Post(props: Props) {
               </Link>
             ) : <div />}
           </nav>
+
+          {/* Comments Section */}
+          <Comments />
 
           <footer className="mt-16">
             <Link
