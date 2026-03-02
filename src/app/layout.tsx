@@ -61,8 +61,8 @@ export default function RootLayout({
 
           {/* Global Subtle Background Elements */}
           <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-            <div className="absolute top-[5%] right-[10%] w-[30%] h-[30%] bg-primary/5 dark:bg-primary/10 blur-[100px] rounded-full" />
-            <div className="absolute bottom-[20%] left-[-5%] w-[25%] h-[25%] bg-secondary/10 dark:bg-secondary/20 blur-[100px] rounded-full" />
+            <div className="absolute top-[5%] right-[10%] w-[30%] h-[30%] bg-primary/5 blur-[100px] rounded-full dark:hidden" />
+            <div className="absolute bottom-[20%] left-[-5%] w-[25%] h-[25%] bg-secondary/10 blur-[100px] rounded-full dark:hidden" />
           </div>
 
           {children}

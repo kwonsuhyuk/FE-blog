@@ -22,7 +22,7 @@
   --font-sans: var(--font-montserrat), "Pretendard Variable", Pretendard, sans-serif;
 }
 
-/* Dark Mode Overrides */
+/* Dark Mode Overrides - Neutral Grays instead of Slates/Blues */
 @layer base {
   :root {
     --primary: #B8D0EB;
@@ -30,17 +30,18 @@
   }
 
   .dark {
-    --color-text-main: #f1f5f9;
-    --color-text-muted: #94a3b8;
-    --color-text-dim: #64748b;
-    --color-text-light: #475569;
+    --color-text-main: #f5f5f5;
+    --color-text-muted: #a3a3a3;
+    --color-text-dim: #737373;
+    --color-text-light: #525252;
     
-    --color-border-subtle: #1e293b;
-    --color-border-main: #334155;
-    --color-bg-main: #0f172a;
-    --color-bg-subtle: #1e293b;
+    --color-border-subtle: #262626;
+    --color-border-main: #404040;
+    --color-bg-main: #171717;
+    --color-bg-subtle: #262626;
 
-    --primary: #3b82f6; /* Adjust primary for dark mode visibility */
+    /* More muted accent for dark mode */
+    --primary: #d1d5db; 
   }
 }
 
@@ -73,8 +74,8 @@ body {
   --tw-prose-quote-borders: var(--color-primary);
   --tw-prose-captions: var(--color-text-dim);
   --tw-prose-code: var(--color-text-main);
-  --tw-prose-pre-code: #f1f5f9;
-  --tw-prose-pre-bg: #1e293b;
+  --tw-prose-pre-code: #f5f5f5;
+  --tw-prose-pre-bg: #171717;
   --tw-prose-th-borders: var(--color-border-main);
   --tw-prose-td-borders: var(--color-border-subtle);
 }
