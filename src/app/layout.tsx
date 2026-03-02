@@ -9,6 +9,9 @@ import { ThemeToggle } from "@/src/components/ThemeToggle";
 import { PageTransition } from "@/src/components/PageTransition";
 import { ScrollToTop } from "@/src/components/ScrollToTop";
 
+// Import the logo directly for reliable path resolution on static exports
+import logoImg from "@/public/logo.jpg";
+
 const gmarketSans = localFont({
   src: [
     {
@@ -67,6 +70,7 @@ export default function RootLayout({
         {/* Pretendard for Korean support */}
         <link rel="stylesheet" as="style" crossOrigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
         
+        {/* Force font application to override aggressive browser extensions */}
         <style dangerouslySetInnerHTML={{ __html: `
           *:not(i, .material-symbols-outlined, .material-icons) {
             font-family: var(--font-gmarket), "Pretendard Variable", Pretendard, sans-serif !important;
@@ -88,9 +92,10 @@ export default function RootLayout({
               <Link href="/" className="text-xl font-black tracking-tighter flex items-center gap-2 group">
                 <div className="relative w-8 h-8 overflow-hidden rounded-lg shadow-sm">
                   <Image 
-                    src="/logo.jpg" 
+                    src={logoImg} 
                     alt="Logo" 
                     fill
+                    priority
                     className="object-cover group-hover:rotate-12 transition-transform" 
                   />
                 </div>
