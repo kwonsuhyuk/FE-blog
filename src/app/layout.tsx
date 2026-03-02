@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>" />
+        <link rel="icon" href="/짱구.jpg" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white text-text-main`}
@@ -36,7 +36,7 @@ export default function RootLayout({
         <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md">
           <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <Link href="/" className="text-xl font-black tracking-tighter flex items-center gap-2 group">
-              <span className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-[10px] text-white group-hover:rotate-12 transition-transform shadow-sm font-black">SL</span>
+              <img src="/짱구.jpg" alt="Logo" className="w-8 h-8 rounded-lg object-cover group-hover:rotate-12 transition-transform shadow-sm" />
               suhyukLog
             </Link>
             <NavLinks />
