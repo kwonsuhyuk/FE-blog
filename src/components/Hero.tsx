@@ -51,7 +51,7 @@ export function Hero({ line1, line3, socialLinks }: HeroProps) {
   return (
     <section className="py-32 md:py-48 relative overflow-hidden bg-bg-main">
       {/* Subtle background blur for depth */}
-      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none dark:hidden">
         <div className="absolute top-[-10%] left-[-5%] w-[50%] h-[50%] bg-primary/10 blur-[120px] rounded-full opacity-50" />
         <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-secondary/20 blur-[120px] rounded-full opacity-50" />
       </div>
@@ -116,7 +116,7 @@ export function Hero({ line1, line3, socialLinks }: HeroProps) {
         transition={{ delay: 2.0, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block"
       >
-        <div className="w-[1px] h-16 bg-gradient-to-b from-primary to-transparent" />
+        <div className="w-[1px] h-16 bg-primary/20" />
       </motion.div>
     </section>
   );
