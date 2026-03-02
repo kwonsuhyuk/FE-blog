@@ -7,15 +7,17 @@
   --color-secondary: #B9FAF8;
   --color-accent: #3b82f6;
 
-  /* Semantic Text Colors - Strengthened for Readability */
-  --color-text-main: #1e293b;    /* slate-900 */
-  --color-text-muted: #475569;   /* slate-600 */
-  --color-text-dim: #64748b;     /* slate-500 */
-  --color-text-light: #94a3b8;   /* slate-400 */
+  /* Semantic Text Colors */
+  --color-text-main: #1e293b;
+  --color-text-muted: #475569;
+  --color-text-dim: #64748b;
+  --color-text-light: #94a3b8;
   
   /* Border & UI */
-  --color-border-subtle: #f1f5f9; /* slate-100 */
-  --color-border-main: #e2e8f0;   /* slate-200 */
+  --color-border-subtle: #f1f5f9;
+  --color-border-main: #e2e8f0;
+
+  --font-sans: var(--font-montserrat), "Pretendard Variable", Pretendard, sans-serif;
 }
 
 :root {
@@ -30,4 +32,9 @@ html {
 
 body {
   @apply antialiased text-text-main bg-white;
+}
+
+/* Base override for all elements */
+*:not(i, .material-symbols-outlined, .material-icons) {
+  font-family: var(--font-montserrat), "Pretendard Variable", Pretendard, sans-serif !important;
 }

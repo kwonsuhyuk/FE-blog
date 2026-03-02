@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import NavLinks from "./NavLinks";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const montserrat = Montserrat({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-montserrat",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,12 +22,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={montserrat.variable}>
       <head>
         <link rel="icon" href="/짱구.jpg" />
+        {/* Pretendard for Korean support */}
+        <link rel="stylesheet" as="style" crossOrigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+        
+        {/* 브라우저 확장 프로그램의 강제 폰트를 이기기 위한 최종 단계 */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          *:not(i, .material-symbols-outlined, .material-icons) {
+            font-family: var(--font-montserrat), "Pretendard Variable", Pretendard, sans-serif !important;
+          }
+        ` }} />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white text-text-main`}
+        className={`${montserrat.variable} font-sans antialiased min-h-screen bg-white text-text-main`}
       >
         {/* Navigation Bar */}
         <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md">
