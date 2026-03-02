@@ -49,13 +49,13 @@ export default async function Post(props: Props) {
       <div className="max-w-6xl mx-auto relative px-6">
         <CodeBlockManager />
         <article className="max-w-3xl mx-auto py-24 text-text-main">
-          <header className="mb-16 pb-12">
-            <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-text-main mb-6 leading-[1.2]">
+          <header className="mb-12 pb-10">
+            <h1 className="text-xl md:text-3xl font-black tracking-tighter text-text-main mb-4 leading-[1.2]">
               {postData.title}
             </h1>
-            <div className="flex items-center gap-3 text-sm md:text-base text-text-light font-medium tracking-tight">
+            <div className="flex items-center gap-3 text-xs md:text-sm text-text-light font-medium tracking-tight">
               <time>{postData.date}</time>
-              <span className="text-border-main">|</span>
+              <span className="text-border-main opacity-50">|</span>
               <span className="text-primary font-bold">{postData.category}</span>
             </div>
           </header>
@@ -71,37 +71,39 @@ export default async function Post(props: Props) {
           />
           
           {/* Post Navigation */}
-          <nav className="mt-32 grid grid-cols-1 md:grid-cols-2 gap-4 pt-12 border-t border-border-subtle">
-            {postData.prevPost ? (
-              <Link 
-                href={`/posts/${postData.prevPost.slug}`}
-                className="group p-6 rounded-2xl border border-border-subtle hover:bg-bg-subtle transition-all text-left flex flex-col gap-2"
-              >
-                <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-text-light transition-colors group-hover:text-primary">
-                  <span className="mr-2 transform group-hover:-translate-x-1 transition-transform">←</span>
-                  Older Post
-                </div>
-                <span className="text-base font-bold text-text-main line-clamp-1">
-                  {postData.prevPost.title}
-                </span>
-              </Link>
-            ) : <div />}
+          {(postData.prevPost || postData.nextPost) && (
+            <nav className="mt-32 grid grid-cols-1 md:grid-cols-2 gap-4 pt-12 border-t border-border-subtle">
+              {postData.prevPost ? (
+                <Link 
+                  href={`/posts/${postData.prevPost.slug}`}
+                  className="group p-6 rounded-2xl border border-border-subtle hover:bg-bg-subtle transition-all text-left flex flex-col gap-2"
+                >
+                  <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-text-light transition-colors group-hover:text-primary">
+                    <span className="mr-2 transform group-hover:-translate-x-1 transition-transform">←</span>
+                    Older Post
+                  </div>
+                  <span className="text-base font-bold text-text-main line-clamp-1">
+                    {postData.prevPost.title}
+                  </span>
+                </Link>
+              ) : <div />}
 
-            {postData.nextPost ? (
-              <Link 
-                href={`/posts/${postData.nextPost.slug}`}
-                className="group p-6 rounded-2xl border border-border-subtle hover:bg-bg-subtle transition-all text-right flex flex-col items-end gap-2"
-              >
-                <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-text-light transition-colors group-hover:text-primary">
-                  Newer Post
-                  <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
-                </div>
-                <span className="text-base font-bold text-text-main line-clamp-1">
-                  {postData.nextPost.title}
-                </span>
-              </Link>
-            ) : <div />}
-          </nav>
+              {postData.nextPost ? (
+                <Link 
+                  href={`/posts/${postData.nextPost.slug}`}
+                  className="group p-6 rounded-2xl border border-border-subtle hover:bg-bg-subtle transition-all text-right flex flex-col items-end gap-2"
+                >
+                  <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-text-light transition-colors group-hover:text-primary">
+                    Newer Post
+                    <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+                  </div>
+                  <span className="text-base font-bold text-text-main line-clamp-1">
+                    {postData.nextPost.title}
+                  </span>
+                </Link>
+              ) : <div />}
+            </nav>
+          )}
 
           {/* Comments Section */}
           <Comments />
