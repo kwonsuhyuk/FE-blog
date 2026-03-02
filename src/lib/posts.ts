@@ -30,9 +30,19 @@ export async function getSortedPostsData(): Promise<PostMetadata[]> {
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const matterResult = matter(fileContents);
 
+      // 본문에서 미리보기 텍스트 추출 (마크다운 태그 제거)
+      const contentPreview = matterResult.content
+        .replace(/[#*`>]/g, '') // 간단한 마크다운 기호 제거
+        .replace(/\n+/g, ' ')   // 줄바꿈을 공백으로 변경
+        .trim()
+        .substring(0, 160);     // 약 2~3줄 분량
+
       return {
         slug,
-        ...(matterResult.data as Omit<PostMetadata, 'slug'>),
+        title: matterResult.data.title,
+        date: matterResult.data.date,
+        category: matterResult.data.category,
+        description: matterResult.data.description || contentPreview,
       };
     })
   );
@@ -50,10 +60,19 @@ export async function getPostData(slug: string): Promise<PostData> {
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
 
+  const contentPreview = matterResult.content
+    .replace(/[#*`>]/g, '')
+    .replace(/\n+/g, ' ')
+    .trim()
+    .substring(0, 160);
+
   return {
     slug,
     contentHtml,
-    ...(matterResult.data as Omit<PostMetadata, 'slug'>),
+    title: matterResult.data.title,
+    date: matterResult.data.date,
+    category: matterResult.data.category,
+    description: matterResult.data.description || contentPreview,
   };
 }
 
