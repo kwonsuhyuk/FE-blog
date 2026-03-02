@@ -23,6 +23,8 @@ export interface TocItem {
 export interface PostData extends PostMetadata {
   contentHtml: string;
   toc: TocItem[];
+  prevPost?: PostMetadata;
+  nextPost?: PostMetadata;
 }
 
 export async function getSortedPostsData(): Promise<PostMetadata[]> {
@@ -59,6 +61,18 @@ export async function getSortedPostsData(): Promise<PostMetadata[]> {
 }
 
 export async function getPostData(slug: string): Promise<PostData> {
+  const allPosts = await getSortedPostsData();
+  const postIndex = allPosts.findIndex((post) => post.slug === slug);
+  
+  if (postIndex === -1) {
+    throw new Error(`Post with slug "${slug}" not found`);
+  }
+
+  // 최신글이 리스트의 앞에 있으므로 (sort b.date - a.date)
+  // 이전글은 인덱스가 더 큰 쪽, 다음글은 인덱스가 더 작은 쪽임
+  const nextPost = postIndex > 0 ? allPosts[postIndex - 1] : undefined;
+  const prevPost = postIndex < allPosts.length - 1 ? allPosts[postIndex + 1] : undefined;
+
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const matterResult = matter(fileContents);
@@ -102,6 +116,8 @@ export async function getPostData(slug: string): Promise<PostData> {
     slug,
     contentHtml,
     toc,
+    prevPost,
+    nextPost,
     title: matterResult.data.title,
     date: matterResult.data.date,
     category: matterResult.data.category,

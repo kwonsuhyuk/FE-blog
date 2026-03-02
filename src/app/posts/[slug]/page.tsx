@@ -45,7 +45,40 @@ export default async function Post(props: Props) {
             dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
           />
           
-          <footer className="mt-20 pt-10 border-t border-slate-100">
+          {/* Post Navigation */}
+          <nav className="mt-32 grid grid-cols-1 md:grid-cols-2 gap-4 pt-12 border-t border-slate-50">
+            {postData.prevPost ? (
+              <Link 
+                href={`/posts/${postData.prevPost.slug}`}
+                className="group p-6 rounded-2xl border border-slate-50 hover:bg-slate-50 transition-all text-left flex flex-col gap-2"
+              >
+                <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-text-light transition-colors group-hover:text-primary">
+                  <span className="mr-2 transform group-hover:-translate-x-1 transition-transform">←</span>
+                  Previous Post
+                </div>
+                <span className="text-base font-bold text-text-main line-clamp-1">
+                  {postData.prevPost.title}
+                </span>
+              </Link>
+            ) : <div />}
+
+            {postData.nextPost ? (
+              <Link 
+                href={`/posts/${postData.nextPost.slug}`}
+                className="group p-6 rounded-2xl border border-slate-50 hover:bg-slate-50 transition-all text-right flex flex-col items-end gap-2"
+              >
+                <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-text-light transition-colors group-hover:text-primary">
+                  Next Post
+                  <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+                <span className="text-base font-bold text-text-main line-clamp-1">
+                  {postData.nextPost.title}
+                </span>
+              </Link>
+            ) : <div />}
+          </nav>
+
+          <footer className="mt-16">
             <Link
               href="/posts"
               className="group inline-flex items-center text-xs font-black text-text-light hover:text-primary transition-colors tracking-widest uppercase"
