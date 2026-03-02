@@ -15,7 +15,7 @@ interface HomeClientProps {
 const SOCIAL_LINKS = [
   { label: 'github', href: 'https://github.com/kwonsuhyuk' },
   { label: 'linkedIn', href: 'https://www.linkedin.com/in/%EC%88%98%ED%98%81-%EA%B6%8C-191521328/' },
-  { label: 'legacy blogs', href: 'https://velog.io/@tngur0716/posts' }
+  { label: 'legacy blog', href: 'https://velog.io/@tngur0716/posts' }
 ];
 
 export default function HomeClient({ allPostsData }: HomeClientProps) {
@@ -34,7 +34,7 @@ export default function HomeClient({ allPostsData }: HomeClientProps) {
       />
 
       {/* Content Section */}
-      <div className="max-w-6xl mx-auto px-6 pt-20 pb-32">
+      <div className="max-w-6xl mx-auto px-6 pt-12 pb-20 md:pt-20 md:pb-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           {/* Left: Section Header */}
           <div className="lg:col-span-4">
