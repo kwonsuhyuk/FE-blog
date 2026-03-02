@@ -6,44 +6,44 @@ export default function About() {
   const career = [
     {
       period: "2025.07 - 2025.12",
-      title: "Futurescolle 퓨쳐스콜레 (인턴)",
-      role: "Frontend Developer / Liveclass & Internal Backoffice Dev",
+      title: "Futurescolle (인턴)",
+      role: "프론트엔드 개발자 / 라이브클래스 유지보수 및 사내 백오피스 개발",
     },
     {
       period: "2024.11 - 2025.01",
-      title: "Codeit 코드잇 (인턴)",
-      role: "Frontend Intern / Visual Website Builder Interface",
+      title: "Codeit (인턴)",
+      role: "프론트엔드 인턴 / 비주얼 웹사이트 빌더 인터페이스 개발",
     }
   ];
 
   const projectsAndActivities = [
     {
-      period: "2024.07 - 2024.09",
-      title: "travelevart",
-      role: "AI Travel Itinerary Service / Frontend Lead",
-    },
-    {
       period: "2023.11 - 2025.06",
       title: "OnAndOff",
-      role: "Construction Attendance Service / Personal Project",
+      role: "건설 현장 출결 관리 서비스 / 개인 프로젝트",
+    },
+    {
+      period: "2024.07 - 2024.09",
+      title: "travelevart",
+      role: "AI 여행 일정 생성 서비스 / 프론트엔드 개발",
     }
   ];
 
   const education = [
     {
-      period: "2020.03 - 2026.02",
-      title: "Hanyang University 한양대학교",
-      role: "B.S. in New Industry Software (신산업소프트웨어)",
-    },
-    {
       period: "2024.11 - 2025.01",
-      title: "Codeit 코드잇",
-      role: "Frontend Advanced Course 5th Generation",
+      title: "Codeit",
+      role: "프론트엔드 고급 과정 수료",
     },
     {
       period: "2024.03 - 2024.09",
-      title: "Programmers 프로그래머스",
-      role: "Full-stack Devcourse 2nd Generation",
+      title: "Programmers",
+      role: "풀스택 데브코스 수료",
+    },
+    {
+      period: "2018.03 - 2024.02",
+      title: "한양대학교 ERICA",
+      role: "신산업소프트웨어 전공 학사",
     }
   ];
 

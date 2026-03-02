@@ -1,63 +1,92 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
-import { PostData } from "@/src/lib/posts";
+import { useState, useMemo } from "react";
+import { PostMetadata } from "@/src/lib/posts";
+import { PostCard } from "@/src/components/PostCard";
 
 interface PostsClientProps {
-  allPosts: Omit<PostData, 'contentHtml'>[];
+  allPosts: PostMetadata[];
+  categories: string[];
 }
 
-export default function PostsClient({ allPosts }: PostsClientProps) {
+export default function PostsClient({ allPosts, categories }: PostsClientProps) {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const categories = ["All", "Dev", "Experience", "회고"];
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredPosts = selectedCategory === "All" 
-    ? allPosts 
-    : allPosts.filter(post => post.category === selectedCategory);
+  const filteredPosts = useMemo(() => {
+    return allPosts.filter((post) => {
+      const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
+      const matchesSearch = 
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.description.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [allPosts, selectedCategory, searchQuery]);
+
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = { All: allPosts.length };
+    allPosts.forEach(post => {
+      if (post.category) {
+        counts[post.category] = (counts[post.category] || 0) + 1;
+      }
+    });
+    return counts;
+  }, [allPosts]);
 
   return (
     <>
-      {/* Category Navigation */}
-      <nav className="flex items-center gap-8 mb-16 overflow-x-auto no-scrollbar pb-4 border-b border-border-subtle">
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => setSelectedCategory(category)}
-            className={`text-lg font-bold transition-all whitespace-nowrap ${
-              selectedCategory === category 
-              ? "text-text-main scale-110" 
-              : "text-text-light hover:text-text-muted"
-            }`}
-          >
-            {category}
-          </button>
-        ))}
-      </nav>
+      {/* Search and Filter Header */}
+      <div className="flex flex-col gap-10 mb-16">
+        {/* Search Input */}
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="포스트 검색..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-transparent border-b border-border-subtle pb-4 text-lg font-medium focus:outline-none focus:border-primary transition-colors placeholder:text-text-light/50"
+          />
+          <div className="absolute right-0 bottom-4 text-text-light">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </div>
+        </div>
+
+        {/* Category Navigation */}
+        <nav className="flex items-center gap-8 overflow-x-auto no-scrollbar pb-2">
+          {categories.map((category) => {
+            const count = categoryCounts[category] || 0;
+            return (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`group flex items-center gap-2 text-base font-bold transition-all whitespace-nowrap ${
+                  selectedCategory === category 
+                  ? "text-text-main" 
+                  : "text-text-light hover:text-text-muted"
+                }`}
+              >
+                <span>{category}</span>
+                <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-full border transition-colors ${
+                  selectedCategory === category
+                  ? "bg-primary/10 border-primary/20 text-primary"
+                  : "bg-slate-50 border-border-subtle text-text-light group-hover:text-text-muted"
+                }`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </nav>
+      </div>
 
       {/* Post List */}
-      <div className="grid gap-20">
-        {filteredPosts.map(({ slug, date, title, description, category }) => (
-          <Link key={slug} href={`/posts/${slug}`} className="group block">
-            <article className="space-y-4">
-              <h2 className="text-2xl md:text-3xl font-black text-text-main group-hover:text-primary transition-colors duration-300 tracking-tight leading-snug">
-                {title}
-              </h2>
-              <p className="text-text-muted text-base leading-relaxed line-clamp-6 font-medium">
-                {description}
-              </p>
-              <div className="flex items-center justify-between pt-2">
-                <span className="text-sm font-bold text-text-light tracking-widest uppercase">{date}</span>
-                <span className="text-sm font-black text-text-light group-hover:text-text-muted transition-colors">
-                  {category}
-                </span>
-              </div>
-            </article>
-          </Link>
+      <div className="grid gap-12">
+        {filteredPosts.map((post) => (
+          <PostCard key={post.slug} post={post} headingLevel="h2" />
         ))}
         {filteredPosts.length === 0 && (
           <p className="text-text-light font-medium py-20 text-center text-xl">
-            해당 카테고리에 작성된 포스트가 없습니다.
+            해당 조건에 맞는 포스트가 없습니다.
           </p>
         )}
       </div>

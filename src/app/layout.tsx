@@ -45,17 +45,23 @@ export default function RootLayout({
 
         {/* Global Subtle Background Elements */}
         <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full opacity-50" />
-          <div className="absolute bottom-[10%] right-[-10%] w-[30%] h-[30%] bg-secondary/20 blur-[120px] rounded-full opacity-50" />
+          <div className="absolute top-[5%] right-[10%] w-[30%] h-[30%] bg-primary/5 blur-[100px] rounded-full" />
+          <div className="absolute bottom-[20%] left-[-5%] w-[25%] h-[25%] bg-secondary/10 blur-[100px] rounded-full" />
         </div>
 
         <div className="min-h-[calc(100vh-64px)]">
           {children}
         </div>
 
-        <footer className="py-12 border-t border-border-subtle bg-white">
-          <div className="max-w-6xl mx-auto px-6 text-center text-xs text-text-light font-black uppercase tracking-[0.3em]">
-            Powered by suhyuk
+        <footer className="py-16 border-t border-border-subtle bg-slate-50/50 backdrop-blur-sm">
+          <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="text-[10px] text-text-light font-black uppercase tracking-[0.2em]">
+              @ powered by suhyuk
+            </div>
+            <div className="flex gap-6 text-[10px] text-text-light font-black uppercase tracking-[0.2em]">
+              <a href="https://github.com/kwonsuhyuk" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Github</a>
+              <a href="https://www.linkedin.com/in/%EC%88%98%ED%98%81-%EA%B6%8C-191521328/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a>
+            </div>
           </div>
         </footer>
       </body>

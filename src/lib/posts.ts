@@ -6,16 +6,19 @@ import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-export interface PostData {
+export interface PostMetadata {
   slug: string;
   title: string;
   date: string;
   description: string;
-  contentHtml: string;
   category: string;
 }
 
-export async function getSortedPostsData() {
+export interface PostData extends PostMetadata {
+  contentHtml: string;
+}
+
+export async function getSortedPostsData(): Promise<PostMetadata[]> {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = await Promise.all(
     fileNames.map(async (fileName) => {
@@ -26,7 +29,7 @@ export async function getSortedPostsData() {
 
       return {
         slug,
-        ...(matterResult.data as { date: string; title: string; description: string; category: string }),
+        ...(matterResult.data as Omit<PostMetadata, 'slug'>),
       };
     })
   );
@@ -47,13 +50,13 @@ export async function getPostData(slug: string): Promise<PostData> {
   return {
     slug,
     contentHtml,
-    ...(matterResult.data as { date: string; title: string; description: string; category: string }),
+    ...(matterResult.data as Omit<PostMetadata, 'slug'>),
   };
 }
 
 export async function getAllCategories() {
   const posts = await getSortedPostsData();
-  const categories = new Set<string>(['All']);
+  const categories = new Set<string>(['All', 'Dev', 'Experience', '회고']);
   posts.forEach(post => {
     if (post.category) categories.add(post.category);
   });

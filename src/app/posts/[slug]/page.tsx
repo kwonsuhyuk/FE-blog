@@ -47,13 +47,13 @@ export default async function Post(props: Props) {
         dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
       />
       
-      <footer className="mt-24 pt-12 border-t border-slate-100">
+      <footer className="mt-20 pt-10 border-t border-slate-100">
         <Link
           href="/posts"
-          className="group inline-flex items-center text-sm font-black text-text-light hover:text-primary transition-colors tracking-widest uppercase"
+          className="group inline-flex items-center text-xs font-black text-text-light hover:text-primary transition-colors tracking-widest uppercase"
         >
-          <span className="mr-3 transform group-hover:-translate-x-2 transition-transform duration-300">←</span>
-          Back to Archive
+          <span className="mr-3 transform group-hover:-translate-x-1 transition-transform duration-300">←</span>
+          목록으로 돌아가기
         </Link>
       </footer>
     </article>

@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+const links = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Posts", href: "/posts" },
+];
+
 export default function NavLinks() {
   const pathname = usePathname();
-
-  const links = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Posts", href: "/posts" },
-  ];
 
   return (
     <div className="flex items-center gap-8 text-sm font-bold">
