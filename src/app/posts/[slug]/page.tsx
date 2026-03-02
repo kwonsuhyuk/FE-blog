@@ -50,7 +50,7 @@ export default async function Post(props: Props) {
         <CodeBlockManager />
         <article className="max-w-3xl mx-auto py-24 text-text-main">
           <header className="mb-16 pb-12">
-            <h1 className="text-3xl md:text-5xl font-black tracking-tighter text-text-main mb-6 leading-[1.1]">
+            <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-text-main mb-6 leading-[1.2]">
               {postData.title}
             </h1>
             <div className="flex items-center gap-3 text-sm md:text-base text-text-light font-medium tracking-tight">
@@ -64,7 +64,7 @@ export default async function Post(props: Props) {
             className="prose prose-slate prose-lg max-w-none 
               prose-headings:font-black prose-headings:tracking-tight 
               prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-              prose-pre:bg-slate-900 prose-pre:rounded-2xl prose-pre:p-6
+              prose-pre:bg-slate-900 prose-pre:rounded-2xl prose-pre:p-0
               prose-img:rounded-2xl prose-blockquote:border-primary prose-blockquote:bg-bg-subtle prose-blockquote:py-1
               text-text-muted"
             dangerouslySetInnerHTML={{ __html: postData.contentHtml }}

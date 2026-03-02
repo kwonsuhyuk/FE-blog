@@ -80,6 +80,27 @@ body {
   --tw-prose-td-borders: var(--color-border-subtle);
 }
 
+/* Code Highlighting (Github Dark theme inspired) - More robust styles */
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1.5rem !important;
+  background: #0d1117 !important;
+  color: #c9d1d9;
+  border-radius: 1rem;
+}
+
+.hljs-comment, .hljs-quote { color: #8b949e; font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-type { color: #ff7b72; }
+.hljs-string, .hljs-subst, .hljs-symbol, .hljs-bullet { color: #a5d6ff; }
+.hljs-section, .hljs-title, .hljs-name { color: #ffa657; font-weight: bold; }
+.hljs-variable, .hljs-template-variable, .hljs-attribute { color: #79c0ff; }
+.hljs-number, .hljs-literal { color: #d2a8ff; }
+.hljs-params, .hljs-function { color: #c9d1d9; }
+.hljs-class, .hljs-attr { color: #79c0ff; }
+.hljs-keyword { color: #d2a8ff; }
+.hljs-built_in { color: #ffa657; }
+
 /* Improved Image Styling in Markdown */
 .prose img {
   @apply rounded-2xl shadow-xl shadow-black/5 border border-border-subtle transition-transform duration-500 hover:scale-[1.02] cursor-zoom-in;

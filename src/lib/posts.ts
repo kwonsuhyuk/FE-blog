@@ -1,8 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeStringify from 'rehype-stringify';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
@@ -69,7 +73,6 @@ export async function getPostData(slug: string): Promise<PostData> {
   }
 
   // 최신글이 리스트의 앞에 있으므로 (sort b.date - a.date)
-  // 이전글은 인덱스가 더 큰 쪽, 다음글은 인덱스가 더 작은 쪽임
   const nextPost = postIndex > 0 ? allPosts[postIndex - 1] : undefined;
   const prevPost = postIndex < allPosts.length - 1 ? allPosts[postIndex + 1] : undefined;
 
@@ -84,7 +87,6 @@ export async function getPostData(slug: string): Promise<PostData> {
   while ((match = headingRegex.exec(matterResult.content)) !== null) {
     const level = match[1].length;
     const text = match[2].trim();
-    // 간단한 ID 생성 (공백 제거, 소문자화)
     const id = text
       .toLowerCase()
       .replace(/\s+/g, '-')
@@ -92,8 +94,12 @@ export async function getPostData(slug: string): Promise<PostData> {
     toc.push({ id, text, level });
   }
 
-  const processedContent = await remark()
-    .use(html)
+  const processedContent = await unified()
+    .use(remarkParse)
+    .use(remarkGfm) // GFM 지원 추가
+    .use(remarkRehype)
+    .use(rehypeHighlight)
+    .use(rehypeStringify)
     .process(matterResult.content);
   
   let contentHtml = processedContent.toString();
