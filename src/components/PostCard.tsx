@@ -10,7 +10,7 @@ export function PostCard({ post, headingLevel = "h2" }: PostCardProps) {
   const Heading = headingLevel;
   return (
     <Link href={`/posts/${post.slug}`} className="group block -mx-4">
-      <article className="p-4 rounded-2xl transition-all duration-300 group-hover:bg-slate-50 text-left">
+      <article className="p-4 rounded-2xl transition-all duration-300 group-hover:bg-bg-subtle text-left">
         <div className="flex items-center gap-3 mb-2">
           <span className="text-[10px] font-bold text-text-light tracking-widest uppercase">
             {post.date}

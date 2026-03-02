@@ -69,7 +69,7 @@ export default function PostsClient({ allPosts, categories }: PostsClientProps) 
                 <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-full border transition-colors ${
                   selectedCategory === category
                   ? "bg-primary/10 border-primary/20 text-primary"
-                  : "bg-slate-50 border-border-subtle text-text-light group-hover:text-text-muted"
+                  : "bg-bg-subtle border-border-subtle text-text-light group-hover:text-text-muted"
                 }`}>
                   {count}
                 </span>

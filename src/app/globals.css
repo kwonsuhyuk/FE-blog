@@ -7,22 +7,41 @@
   --color-secondary: #B9FAF8;
   --color-accent: #3b82f6;
 
-  /* Semantic Text Colors */
+  /* Semantic Text Colors - Light Mode (Default) */
   --color-text-main: #1e293b;
   --color-text-muted: #475569;
   --color-text-dim: #64748b;
   --color-text-light: #94a3b8;
   
-  /* Border & UI */
+  /* Border & UI - Light Mode (Default) */
   --color-border-subtle: #f1f5f9;
   --color-border-main: #e2e8f0;
+  --color-bg-main: #ffffff;
+  --color-bg-subtle: #f8fafc;
 
   --font-sans: var(--font-montserrat), "Pretendard Variable", Pretendard, sans-serif;
 }
 
-:root {
-  --primary: #B8D0EB;
-  --secondary: #B9FAF8;
+/* Dark Mode Overrides */
+@layer base {
+  :root {
+    --primary: #B8D0EB;
+    --secondary: #B9FAF8;
+  }
+
+  .dark {
+    --color-text-main: #f1f5f9;
+    --color-text-muted: #94a3b8;
+    --color-text-dim: #64748b;
+    --color-text-light: #475569;
+    
+    --color-border-subtle: #1e293b;
+    --color-border-main: #334155;
+    --color-bg-main: #0f172a;
+    --color-bg-subtle: #1e293b;
+
+    --primary: #3b82f6; /* Adjust primary for dark mode visibility */
+  }
 }
 
 html {
@@ -31,10 +50,30 @@ html {
 }
 
 body {
-  @apply antialiased text-text-main bg-white;
+  @apply antialiased text-text-main bg-bg-main transition-colors duration-300;
 }
 
 /* Base override for all elements */
 *:not(i, .material-symbols-outlined, .material-icons) {
   font-family: var(--font-montserrat), "Pretendard Variable", Pretendard, sans-serif !important;
+}
+
+/* Typography Dark Mode Support */
+.dark .prose {
+  --tw-prose-body: var(--color-text-muted);
+  --tw-prose-headings: var(--color-text-main);
+  --tw-prose-lead: var(--color-text-dim);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-text-main);
+  --tw-prose-counters: var(--color-text-light);
+  --tw-prose-bullets: var(--color-text-light);
+  --tw-prose-hr: var(--color-border-subtle);
+  --tw-prose-quotes: var(--color-text-main);
+  --tw-prose-quote-borders: var(--color-primary);
+  --tw-prose-captions: var(--color-text-dim);
+  --tw-prose-code: var(--color-text-main);
+  --tw-prose-pre-code: #f1f5f9;
+  --tw-prose-pre-bg: #1e293b;
+  --tw-prose-th-borders: var(--color-border-main);
+  --tw-prose-td-borders: var(--color-border-subtle);
 }

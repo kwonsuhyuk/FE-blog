@@ -92,7 +92,7 @@ export default function About() {
                     {item.period}
                   </span>
                 </div>
-                <div className="absolute left-[30%] md:left-[35%] top-2 -translate-x-1/2 w-2 h-2 rounded-full border border-slate-300 bg-white z-10"></div>
+                <div className="absolute left-[30%] md:left-[35%] top-2 -translate-x-1/2 w-2 h-2 rounded-full border border-border-main bg-bg-main z-10"></div>
                 <div className="w-[70%] md:w-[65%] pl-8 md:pl-12">
                   <h3 className="text-xl md:text-2xl font-black text-text-main mb-2 tracking-tight leading-tight">
                     {item.title}
@@ -124,7 +124,7 @@ export default function About() {
                     {item.period}
                   </span>
                 </div>
-                <div className="absolute left-[30%] md:left-[35%] top-2 -translate-x-1/2 w-2 h-2 rounded-full border border-slate-300 bg-white z-10"></div>
+                <div className="absolute left-[30%] md:left-[35%] top-2 -translate-x-1/2 w-2 h-2 rounded-full border border-border-main bg-bg-main z-10"></div>
                 <div className="w-[70%] md:w-[65%] pl-8 md:pl-12">
                   <h3 className="text-xl md:text-2xl font-black text-text-main mb-2 tracking-tight leading-tight">
                     {item.title}
@@ -156,7 +156,7 @@ export default function About() {
                     {item.period}
                   </span>
                 </div>
-                <div className="absolute left-[30%] md:left-[35%] top-2 -translate-x-1/2 w-2 h-2 rounded-full border border-slate-300 bg-white z-10"></div>
+                <div className="absolute left-[30%] md:left-[35%] top-2 -translate-x-1/2 w-2 h-2 rounded-full border border-border-main bg-bg-main z-10"></div>
                 <div className="w-[70%] md:w-[65%] pl-8 md:pl-12">
                   <h3 className="text-xl md:text-2xl font-black text-text-main mb-2 tracking-tight leading-tight">
                     {item.title}

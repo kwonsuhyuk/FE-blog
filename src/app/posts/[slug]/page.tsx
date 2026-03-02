@@ -40,17 +40,17 @@ export default async function Post(props: Props) {
               prose-headings:font-black prose-headings:tracking-tight 
               prose-a:text-primary prose-a:no-underline hover:prose-a:underline
               prose-pre:bg-slate-900 prose-pre:rounded-2xl prose-pre:p-6
-              prose-img:rounded-2xl prose-blockquote:border-primary prose-blockquote:bg-slate-50 prose-blockquote:py-1
+              prose-img:rounded-2xl prose-blockquote:border-primary prose-blockquote:bg-bg-subtle prose-blockquote:py-1
               text-text-muted"
             dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
           />
           
           {/* Post Navigation */}
-          <nav className="mt-32 grid grid-cols-1 md:grid-cols-2 gap-4 pt-12 border-t border-slate-50">
+          <nav className="mt-32 grid grid-cols-1 md:grid-cols-2 gap-4 pt-12 border-t border-border-subtle">
             {postData.prevPost ? (
               <Link 
                 href={`/posts/${postData.prevPost.slug}`}
-                className="group p-6 rounded-2xl border border-slate-50 hover:bg-slate-50 transition-all text-left flex flex-col gap-2"
+                className="group p-6 rounded-2xl border border-border-subtle hover:bg-bg-subtle transition-all text-left flex flex-col gap-2"
               >
                 <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-text-light transition-colors group-hover:text-primary">
                   <span className="mr-2 transform group-hover:-translate-x-1 transition-transform">←</span>
@@ -65,7 +65,7 @@ export default async function Post(props: Props) {
             {postData.nextPost ? (
               <Link 
                 href={`/posts/${postData.nextPost.slug}`}
-                className="group p-6 rounded-2xl border border-slate-50 hover:bg-slate-50 transition-all text-right flex flex-col items-end gap-2"
+                className="group p-6 rounded-2xl border border-border-subtle hover:bg-bg-subtle transition-all text-right flex flex-col items-end gap-2"
               >
                 <div className="flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-text-light transition-colors group-hover:text-primary">
                   Next Post
