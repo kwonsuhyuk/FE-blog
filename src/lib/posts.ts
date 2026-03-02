@@ -14,8 +14,15 @@ export interface PostMetadata {
   category: string;
 }
 
+export interface TocItem {
+  id: string;
+  text: string;
+  level: number;
+}
+
 export interface PostData extends PostMetadata {
   contentHtml: string;
+  toc: TocItem[];
 }
 
 export async function getSortedPostsData(): Promise<PostMetadata[]> {
@@ -56,10 +63,33 @@ export async function getPostData(slug: string): Promise<PostData> {
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const matterResult = matter(fileContents);
 
+  // 목차(TOC) 추출 및 ID 생성 로직
+  const headingRegex = /^(#{1,6})\s+(.+)$/gm;
+  const toc: TocItem[] = [];
+  let match;
+  while ((match = headingRegex.exec(matterResult.content)) !== null) {
+    const level = match[1].length;
+    const text = match[2].trim();
+    // 간단한 ID 생성 (공백 제거, 소문자화)
+    const id = text
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\wㄱ-ㅎㅏ-ㅣ가-힣-]/g, '');
+    toc.push({ id, text, level });
+  }
+
   const processedContent = await remark()
     .use(html)
     .process(matterResult.content);
-  const contentHtml = processedContent.toString();
+  
+  let contentHtml = processedContent.toString();
+
+  // HTML 내의 h 태그들에 ID 주입 (목차 링크 연결용)
+  toc.forEach(item => {
+    const hTag = `<h${item.level}>${item.text}</h${item.level}>`;
+    const hTagWithId = `<h${item.level} id="${item.id}">${item.text}</h${item.level}>`;
+    contentHtml = contentHtml.replace(hTag, hTagWithId);
+  });
 
   const contentPreview = matterResult.content
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
@@ -71,6 +101,7 @@ export async function getPostData(slug: string): Promise<PostData> {
   return {
     slug,
     contentHtml,
+    toc,
     title: matterResult.data.title,
     date: matterResult.data.date,
     category: matterResult.data.category,

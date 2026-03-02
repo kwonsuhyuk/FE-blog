@@ -23,6 +23,11 @@
   --secondary: #B9FAF8;
 }
 
+html {
+  @apply scroll-smooth;
+  scroll-padding-top: 100px;
+}
+
 body {
   @apply antialiased text-text-main bg-white;
 }
