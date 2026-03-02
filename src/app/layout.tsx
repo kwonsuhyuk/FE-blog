@@ -33,7 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white text-text-main`}
       >
         {/* Navigation Bar */}
-        <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-border-subtle">
+        <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md">
           <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <Link href="/" className="text-xl font-black tracking-tighter flex items-center gap-2 group">
               <span className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-[10px] text-white group-hover:rotate-12 transition-transform shadow-sm font-black">SL</span>
@@ -53,7 +53,7 @@ export default function RootLayout({
           {children}
         </div>
 
-        <footer className="py-16 border-t border-border-subtle bg-slate-50/50 backdrop-blur-sm">
+        <footer className="py-16 bg-slate-50/50 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-[10px] text-text-light font-black uppercase tracking-[0.2em]">
               @ powered by suhyuk

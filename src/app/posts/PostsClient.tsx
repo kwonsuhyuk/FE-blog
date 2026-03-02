@@ -44,7 +44,7 @@ export default function PostsClient({ allPosts, categories }: PostsClientProps) 
             placeholder="포스트 검색..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-transparent border-b border-border-subtle pb-4 text-lg font-medium focus:outline-none focus:border-primary transition-colors placeholder:text-text-light/50"
+            className="w-full bg-transparent pb-4 text-lg font-medium focus:outline-none transition-colors placeholder:text-text-light/50"
           />
           <div className="absolute right-0 bottom-4 text-text-light">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>

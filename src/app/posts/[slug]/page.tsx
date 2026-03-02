@@ -22,7 +22,7 @@ export default async function Post(props: Props) {
 
     return (
       <article className="max-w-3xl mx-auto px-6 py-24 text-text-main">
-        <header className="mb-16 border-b border-slate-100 pb-12">
+        <header className="mb-16 pb-12">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3 text-xs font-black text-text-light uppercase tracking-[0.2em]">
               <span>{postData.date}</span>
@@ -35,10 +35,6 @@ export default async function Post(props: Props) {
           <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-8 leading-[1.2]">
             {postData.title}
           </h1>
-          
-          <p className="text-lg text-text-muted font-medium leading-relaxed">
-            {postData.description}
-          </p>
         </header>
 
         <div

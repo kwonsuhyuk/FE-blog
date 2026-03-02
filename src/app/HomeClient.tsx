@@ -27,7 +27,7 @@ export default function HomeClient({ allPostsData }: HomeClientProps) {
 
       {/* Content Section */}
       <div className="max-w-6xl mx-auto px-6 py-20">
-        <header className="mb-12 flex items-center justify-between border-b border-border-subtle pb-6">
+        <header className="mb-12 flex items-center justify-between pb-6">
           <div className="space-y-1">
             <h2 className="text-xs font-black tracking-[0.3em] uppercase text-text-light">Recently Published</h2>
           </div>

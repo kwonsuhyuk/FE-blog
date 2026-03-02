@@ -30,12 +30,13 @@ export async function getSortedPostsData(): Promise<PostMetadata[]> {
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const matterResult = matter(fileContents);
 
-      // 본문에서 미리보기 텍스트 추출 (마크다운 태그 제거)
+      // 본문에서 미리보기 텍스트 추출 (마크다운 태그 및 특수 기호 제거)
       const contentPreview = matterResult.content
-        .replace(/[#*`>]/g, '') // 간단한 마크다운 기호 제거
-        .replace(/\n+/g, ' ')   // 줄바꿈을 공백으로 변경
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // 링크 텍스트만 남기기
+        .replace(/[#*`>_\[\]]/g, '')             // 마크다운 기호 제거
+        .replace(/\n+/g, ' ')                    // 줄바꿈을 공백으로 변경
         .trim()
-        .substring(0, 160);     // 약 2~3줄 분량
+        .substring(0, 500);                      // 충분한 분량 확보 (3줄을 꽉 채우기 위해 500자로 상향)
 
       return {
         slug,
@@ -61,10 +62,11 @@ export async function getPostData(slug: string): Promise<PostData> {
   const contentHtml = processedContent.toString();
 
   const contentPreview = matterResult.content
-    .replace(/[#*`>]/g, '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/[#*`>_\[\]]/g, '')
     .replace(/\n+/g, ' ')
     .trim()
-    .substring(0, 160);
+    .substring(0, 500);
 
   return {
     slug,
