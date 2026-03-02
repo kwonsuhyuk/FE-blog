@@ -2,8 +2,8 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  /* Brand Colors - Neutral/warm gray */
-  --color-primary: #d1d5db;
+  /* Brand Colors - Updated to #2274A5 */
+  --color-primary: #2274A5;
   --color-secondary: #e5e7eb;
   --color-accent: #525252;
 
@@ -25,7 +25,7 @@
 /* Dark Mode Overrides - Neutral Grays */
 @layer base {
   :root {
-    --primary: #d1d5db;
+    --primary: #2274A5;
     --secondary: #e5e7eb;
   }
 
@@ -40,7 +40,8 @@
     --color-bg-main: #171717;
     --color-bg-subtle: #262626;
 
-    --primary: #737373; 
+    /* Primary for dark mode: slightly lighter version of #2274A5 for better contrast */
+    --primary: #3a9ad9; 
   }
 }
 
