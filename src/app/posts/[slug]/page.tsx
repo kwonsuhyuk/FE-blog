@@ -59,9 +59,9 @@ export default async function Post(props: Props) {
               <span className="text-primary font-bold">{postData.category}</span>
               <span className="text-border-main opacity-50">|</span>
               <img 
-                src={`https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=${encodeURIComponent(`https://kwonsuhyuk.github.io/FE-blog/posts/${params.slug}`)}&count_bg=%234263eb&title_bg=%235c7cfa&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false`} 
+                src={`https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=${encodeURIComponent(`https://kwonsuhyuk.github.io/FE-blog/posts/${postData.slug}`)}&count_bg=%234263eb&title_bg=%235c7cfa&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false`} 
                 alt="Hits"
-                className="h-[18px] w-auto"
+                className="h-[20px] min-w-[50px]"
                 referrerPolicy="no-referrer"
               />
             </div>
