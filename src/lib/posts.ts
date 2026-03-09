@@ -65,18 +65,19 @@ export async function getSortedPostsData(): Promise<PostMetadata[]> {
 }
 
 export async function getPostData(slug: string): Promise<PostData> {
+  const decodedSlug = decodeURIComponent(slug);
   const allPosts = await getSortedPostsData();
-  const postIndex = allPosts.findIndex((post) => post.slug === slug);
+  const postIndex = allPosts.findIndex((post) => post.slug === decodedSlug);
   
   if (postIndex === -1) {
-    throw new Error(`Post with slug "${slug}" not found`);
+    throw new Error(`Post with slug "${decodedSlug}" not found`);
   }
 
   // 최신글이 리스트의 앞에 있으므로 (sort b.date - a.date)
   const nextPost = postIndex > 0 ? allPosts[postIndex - 1] : undefined;
   const prevPost = postIndex < allPosts.length - 1 ? allPosts[postIndex + 1] : undefined;
 
-  const fullPath = path.join(postsDirectory, `${slug}.md`);
+  const fullPath = path.join(postsDirectory, `${decodedSlug}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const matterResult = matter(fileContents);
 

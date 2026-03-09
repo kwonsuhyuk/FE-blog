@@ -1,6 +1,6 @@
 ---
 title: "여행지 추천 서비스 'Travelevart' 프로젝트 회고"
-date: "2026-03-10"
+date: "2024-09-11"
 category: "회고"
 ---
 

@@ -1,7 +1,7 @@
 ---
-title: "mysql 포트번호 변경하기"
-date: "2024-04-17T06:20:13.537Z"
-tags: ["db","sql"]
+title: "MySQL 기본 포트(3306) 변경하는 방법"
+date: "2025-08-23"
+category: "Dev"
 ---
 
 ### 서론
