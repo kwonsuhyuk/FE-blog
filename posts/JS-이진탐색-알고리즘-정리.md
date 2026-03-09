@@ -1,6 +1,6 @@
 ---
 title: "JavaScript 이진 탐색(Binary Search)과 파라메트릭 서치"
-date: "2026-03-08"
+date: "2026-02-28"
 category: "Dev"
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Next.js 메타데이터(Metadata)와 SEO 최적화"
-date: "2026-03-02"
+date: "2026-02-24"
 category: "Dev"
 ---
 

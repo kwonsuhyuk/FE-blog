@@ -1,6 +1,6 @@
 ---
 title: "Next.js 미들웨어(Middleware) 활용 가이드"
-date: "2026-03-05"
+date: "2026-02-26"
 category: "Dev"
 ---
 
