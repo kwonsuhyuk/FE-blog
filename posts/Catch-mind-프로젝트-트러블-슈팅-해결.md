@@ -1,6 +1,6 @@
 ---
 title: "[Catch Mind 프로젝트] 성능 최적화와 트러블 슈팅 경험"
-date: "2026-01-05"
+date: "2024-06-05"
 category: "Project"
 ---
 
