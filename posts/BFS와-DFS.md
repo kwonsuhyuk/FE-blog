@@ -13,7 +13,8 @@ category: "Dev"
 DFS(Depth First Search)는 깊이 우선 탐색 알고리즘이다.  
 현재 위치에서 갈 수 있는 경로를 따라 **최대한 깊이 들어간 후**, 더 이상 갈 수 없으면 이전으로 돌아와 다른 경로를 탐색하는 방식이다.
 
-<img width="703" height="365" alt="Image" src="https://github.com/user-attachments/assets/cf90ccfb-5f3d-4aca-84c1-5f5df87653aa" />
+![SSG](https://github.com/user-attachments/assets/cf90ccfb-5f3d-4aca-84c1-5f5df87653aa)
+
 
 이 탐색 방식은 다음과 같은 특징을 가진다.
 
@@ -293,7 +294,7 @@ DFS가 나오는 대표 케이스는 크게 4부류로 보면 된다.
 BFS(Breadth First Search)는 너비 우선 탐색 알고리즘이다.  
 현재 위치에서 가까운 노드부터 차례대로 탐색해 나가는 방식이다.
 
-<img width="708" height="366" alt="Image" src="https://github.com/user-attachments/assets/7c2d3f0c-76bc-40ad-9c50-09fa4a0e7dbe" />
+![SSG](https://github.com/user-attachments/assets/7c2d3f0c-76bc-40ad-9c50-09fa4a0e7dbe)
 
 DFS가 한 방향으로 끝까지 내려가는 방식이라면,  
 BFS는 같은 거리의 노드를 먼저 모두 탐색한 후 다음 단계로 넘어간다.
@@ -743,5 +744,5 @@ if nx < 0 or nx >= n or ny < 0 or ny >= m:
 
 bfs, dfs 는 코딩테스트에서 반드시 나오는 유형중 하나이기에 python 을 통해서 간단하게 정리해봤다!
 
-![Image](https://github.com/user-attachments/assets/e7697fa8-f160-4fd6-af99-3d8b24781a31)
+![SSG](https://github.com/user-attachments/assets/e7697fa8-f160-4fd6-af99-3d8b24781a31)
 
