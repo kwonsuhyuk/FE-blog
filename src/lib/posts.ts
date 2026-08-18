@@ -134,7 +134,7 @@ export async function getPostData(slug: string): Promise<PostData> {
 
 export async function getAllCategories() {
   const posts = await getSortedPostsData();
-  const categories = new Set<string>(['All', 'Dev', 'Experience', '회고']);
+  const categories = new Set<string>(['All', 'Dev', 'Experience', '회고', '풀스택 공부']);
   posts.forEach(post => {
     if (post.category) categories.add(post.category);
   });
